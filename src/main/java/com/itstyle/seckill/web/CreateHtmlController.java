@@ -27,4 +27,10 @@ public class CreateHtmlController {
 		LOGGER.info("生成秒杀活动静态页");
 		return createHtmlService.createAllHtml();
 	}
+
+
+	public void search(){
+		System.out.println("这是一个空方法。。。");
+	}
+
 }
