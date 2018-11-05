@@ -10,23 +10,28 @@ import org.springframework.stereotype.Component;
 import com.google.common.util.concurrent.RateLimiter;
 /**
  * 限流 AOP
- * 创建者	张志朋
+ * @author 	张志朋
  * 创建时间	2015年6月3日
  */
 @Component
 @Scope
 @Aspect
 public class LimitAspect {
-	////每秒只发出5个令牌，此处是单进程服务的限流,内部采用令牌捅算法实现
+
+	/**
+	 * 每秒只发出5个令牌，此处是单进程服务的限流,内部采用令牌捅算法实现
+	 */
 	private static   RateLimiter rateLimiter = RateLimiter.create(5.0);
 	
-	//Service层切点  限流
+	/**
+	 * Service层切点  限流
+	 */
 	@Pointcut("@annotation(com.itstyle.seckill.common.aop.ServiceLimit)")  
-	public void ServiceAspect() {
+	public void serviceAspect() {
 		
 	}
 	
-    @Around("ServiceAspect()")
+    @Around("serviceAspect()")
     public  Object around(ProceedingJoinPoint joinPoint) { 
     	Boolean flag = rateLimiter.tryAcquire();
     	Object obj = null;

@@ -1,6 +1,7 @@
 package com.itstyle.seckill.common.redis;
 
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -21,6 +22,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
+
+	Properties properties = null;
+
 	/**
 	 * 自定义key(消息队列 暂时用不到 自行忽略)
      * 此方法将会根据类名+方法名+所有参数的值生成唯一的一个key,即使@Cacheable中的value属性一样，key也会不一样。
